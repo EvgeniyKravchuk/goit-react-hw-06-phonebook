@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
@@ -74,7 +73,7 @@ export default function ContactForm() {
   );
 }
 
-ContactForm.propTypes = {
-  addContact: PropTypes.func.isRequired,
-  contacts: PropTypes.array.isRequired,
-};
+// ContactForm.propTypes = {
+//   addContact: PropTypes.func.isRequired,
+//   contacts: PropTypes.array.isRequired,
+// };

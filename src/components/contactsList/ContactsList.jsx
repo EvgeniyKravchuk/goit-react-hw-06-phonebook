@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteContact } from "../../redux/contacts/contacts-actions";
@@ -10,11 +9,11 @@ export default function ContactsList() {
   );
   const dispatch = useDispatch();
 
-  const filterElements = (contacts, filterValue) => {
+  function filterElements(contacts, filterValue) {
     return contacts.filter((contact) => {
       return contact.name.toLowerCase().includes(filterValue.toLowerCase());
     });
-  };
+  }
 
   return (
     <List>
@@ -34,8 +33,3 @@ export default function ContactsList() {
     </List>
   );
 }
-
-ContactsList.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  deleteContact: PropTypes.func.isRequired,
-};
