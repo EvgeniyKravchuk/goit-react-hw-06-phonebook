@@ -1,11 +1,16 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useSelector, useDispatch } from "react-redux";
 import { Input, Label, Button, Form } from "./ContactForm.styled";
+import { addContact } from "../../redux/contacts/contacts-actions.js";
 
-export default function ContactForm({ addContact, contacts }) {
+export default function ContactForm() {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+
+  const contacts = useSelector((state) => state.contacts.items);
+  const dispatch = useDispatch();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -22,7 +27,7 @@ export default function ContactForm({ addContact, contacts }) {
     } else if (name === "" || number === "") {
       return alert("Пожалуйста, введите Имя и номер.");
     } else {
-      addContact(contact);
+      dispatch(addContact(contact));
       clear();
     }
   };
@@ -33,11 +38,7 @@ export default function ContactForm({ addContact, contacts }) {
   };
 
   return (
-    <Form
-      onSubmit={(evt) => {
-        handleSubmit(evt);
-      }}
-    >
+    <Form onSubmit={handleSubmit}>
       <Label>
         Имя:
         <Input
